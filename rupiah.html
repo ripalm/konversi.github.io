@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+
+        h3 {
+            font-weight: 500;
+        }
+
+        .container {
+            font-family: 'Roboto', Arial, Sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            left: 50%;
+            position: absolute;
+            top: 0;
+            transform: translate(-50%, 5%)
+        }
+
+        .group {
+            display: block;
+            margin-bottom: 1.5em
+        }
+
+        label {
+            display: block;
+            margin-bottom: .5em
+        }
+
+        input {
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Roboto', Arial, Sans-serif;
+            font-size: 16px;
+            outline: none;
+            padding: .5em 1em;
+        }
+    </style>
+
+<body>
+    <div class="container">
+        <h3>Custom Format Input</h3>
+        <br>
+        <form action="#" method="post">
+            <div class="group">
+                <label>Rp</label>
+                <input type="text" class="uang">
+            </div>
+            <div class="group">
+                <label>No. HP</label>
+                <input type="text" class="no_hp">
+            </div>
+            <div class="group">
+                <label>Tahun Pelajaran</label>
+                <input type="text" class="tapel">
+            </div>
+        </form>
+        <br>
+        Masukan Uang Yang Akan DiKonversi : <br />
+        <input type=text id="nilai">
+        <button value="ubah" onclick="ubah(document.getElementById('nilai').value)">Konversi</button>
+        <div id="hasil" />
+    </div>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="jquery.mask.min.js"></script>
+    <script src="konversi.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            // Format mata uang.
+            $('.uang').mask('0.000.000.000.000', {
+                reverse: true
+            });
+
+            // Format nomor HP.
+            $('.no_hp').mask('0000−0000−0000');
+
+            // Format tahun pelajaran.
+            $('.tapel').mask('0000/0000');
+        })
+    </script>
+    <script type="text/javascript">
+        function ubah(nilai) {
+            //memanggil fungsi terbilang() dari file terbilang.js
+            var hasil = terbilang(nilai);
+            var hasil_div = document.getElementById('hasil');
+            //masukkan hasil konversi ke dalam hasil_div
+            hasil_div.innerHTML = hasil;
+        }
+    </script>
+</body>
+
+</html>
